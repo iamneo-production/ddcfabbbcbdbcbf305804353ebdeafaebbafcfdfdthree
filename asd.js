@@ -5,6 +5,7 @@ const puppeteer = require('puppeteer');
     headless: false, // Set to true for headless mode
     args: ['--headless', '--disable-gpu', '--remote-debugging-port=9222', '--no-sandbox', '--disable-setuid-sandbox']
   });
+  // console.log("asd");
 
 // Test Case 1: Check if the container background color is rgb(99, 182, 245)
   const page1 = await browser.newPage();
