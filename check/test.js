@@ -3,7 +3,7 @@ const puppeteer = require('puppeteer');
 (async () => {
   const browser = await puppeteer.launch({
     headless: false, // Set to true for headless mode
-    puppeteer/test.js
+    args: ['--headless','--disable-gpu', '--remote-debugging-port=9222', '--no-sandbox', '--disable-setuid-sandbox'],
   });
 
 // Test Case 1: Check if the container background color is rgb(99, 182, 245)
