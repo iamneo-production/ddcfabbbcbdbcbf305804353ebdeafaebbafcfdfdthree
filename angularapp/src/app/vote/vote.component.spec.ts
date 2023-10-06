@@ -48,4 +48,63 @@ describe('VoteComponent', () => {
     const result = component.totalVotes(product);
     expect(result).toBe(false);
   });
+  // My test cases.
+  
+  it('should create the app', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should initialize products', () => {
+    expect(component.products).toBeDefined();
+    expect(component.products.length).toBe(3); // Assuming you have 3 initial products
+  });
+
+  it('should increment likes when like button is clicked', () => {
+    const product = component.products[0];
+    component.like(product);
+    expect(product.likes).toBe(1);
+  });
+
+  it('should disable like and dislike buttons when total votes reach 10', () => {
+    const product = component.products[2];
+    product.likes = 5;
+    product.dislikes = 5;
+    expect(component.totalVotes(product)).toBe(true);
+    expect(component.totalVotes(component.products[0])).toBe(false);
+  });
+
+  it('should not increment likes when total votes reach 10', () => {
+    const product = component.products[0];
+    product.likes = 5;
+    product.dislikes = 5;
+    component.like(product);
+    expect(product.likes).toBe(5);
+  });
+
+  it('should not increment dislikes when total votes reach 10', () => {
+    const product = component.products[1];
+    product.likes = 5;
+    product.dislikes = 5;
+    component.dislike(product);
+    expect(product.dislikes).toBe(5);
+  });
+
+  it('should not disable like and dislike buttons when total votes are less than 10', () => {
+    const product = component.products[0];
+    product.likes = 5;
+    product.dislikes = 4;
+    expect(component.totalVotes(product)).toBe(false);
+  });
+
+  it('should not disable like and dislike buttons when total votes are greater than 10', () => {
+    const product = component.products[0];
+    product.likes = 6;
+    product.dislikes = 5;
+    expect(component.totalVotes(product)).toBe(false);
+  });
+
+  it('should not disable like and dislike buttons when total votes are zero', () => {
+    const product = component.products[0];
+    expect(component.totalVotes(product)).toBe(false);
+  });
 });
